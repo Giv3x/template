@@ -16,6 +16,7 @@ class UserModel {
 		$query = "select salt from users where username = :uname";
 		$params = array(0 => array('name' => ':uname', 'value' => $username, 'type' => PDO::PARAM_STR|PDO::PARAM_INPUT_OUTPUT, 'size' => 45));
 		$salt = $db->execStatement($query, $params);
+		$salt = $salt[0]['salt'];
 		$password = hash("sha256", $password.$salt);
 
 		$query = "select t.id, t.username, r.name role, t.email from users t, roles r where roleid = r.id
@@ -34,6 +35,7 @@ class UserModel {
 	function register($userInfo) {
 		$params = array_keys($userInfo);
 		$values = array(0 => $userInfo);
+		$db = ($this->sql);
 		try{
 			$db->insert($params, $values, 'users');
 		} catch(PDOException $ex) {

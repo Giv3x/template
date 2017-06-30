@@ -133,15 +133,18 @@ class sql {
 		$statement->closeCursor();
 	}
 
-	public function execStatement($query, $params = array()) {
+	public function execStatement($query, $params = array(), $option = PDO::FETCH_ASSOC) {
 		$db = ($this->connection);
 		$statement = $db->prepare($query);
 		foreach($params as $param)
 			$statement->bindParam($param['name'], $param['value'], $param['type'], $param['size']);
 
 		$statement->execute();
+		$out = array();
+		if($option > 1 && $option < 5)
+			$out = $statement->fetchAll($option);
 		$statement->closeCursor();
-		//return $outParams;
+		return $out;
 	}
 
 	function execCursor($query, $params = array(), $option = PDO::FETCH_ASSOC) {
