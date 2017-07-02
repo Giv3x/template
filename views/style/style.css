@@ -14,7 +14,7 @@ button {
     margin: 8px 0;
     border: none;
     cursor: pointer;
-    width: 100%;
+    /*width: 100%;*/
 }
 
 button:hover {
@@ -54,7 +54,7 @@ span.psw {
     background-color: #fefefe;
     margin: 5% auto 15% auto;
     border: 1px solid #888;
-    width: 80%;
+    width: 50%;
 }
 
 .close {
@@ -98,13 +98,15 @@ span.psw {
 }
 
 .error {
-  float: right;
   color: red;
-  position: relative;
+  float: right;
 }
 
-.label {
+.labels {
+  float: left;
+}
+/*.label {
   position: absolute;
   background-color: white;
   margin-left: 5px;
-}
+}*/
