@@ -80,8 +80,8 @@ class UserModel {
 		$db = ($this->sql);
 		$query = "select exists(select 1 from users where username = '".$username."') as check_name";
 		$data = $db->execQuery($query, PDO::FETCH_ASSOC);
-		$response['success'] = $data[0]['check_name'];
-		$response['response'] =  $response['success'] == 1 ? 'invalid username' : 'available';
+		$response['success'] = $data[0]['check_name'] == 1 ? false : true;
+		$response['response'] =  !$response['success'] ? 'User already exists' : 'username available';
 
 		return $response;
 	}
@@ -90,8 +90,8 @@ class UserModel {
 		$db = ($this->sql);
 		$query = "select exists(select 1 from users where email = '".$email."') as check_mail";
 		$data = $db->execQuery($query, PDO::FETCH_ASSOC);
-		$response['success'] = $data[0]['check_mail'];
-		$response['response'] =  $response['success'] == 1 ? 'invalid email' : 'available';
+		$response['success'] = $data[0]['check_mail'] == 1 ? false : true;
+		$response['response'] =  !$response['success'] ? 'email already exists' : 'email available';
 
 		return $response;
 	}

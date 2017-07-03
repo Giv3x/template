@@ -1,6 +1,7 @@
 <?php
 //session_start();
 include('php/models/UserModel.php');
+include('php/library/functions.php');
 
 class UserController {
 
@@ -28,17 +29,40 @@ class UserController {
 	}
 
 	function register() {
-		$response = array();
+		$response = array('success' => true, 'response' => 'Invalid data');
+		$detailed_error = array('username' => '0', 'password' => '0', 'email' => '0', 'repeated_password' => '0');
+		$password = isset($_REQUEST['password']) ? $_REQUEST['password'] : '';
+		$repeated_password = isset($_REQUEST['repeated_password']) ? $_REQUEST['repeated_password'] : '';
 		$model = new UserModel();
+		$nameCheck = $this->checkUserName();
+		$mailCheck = $this->checkEMail();
 
 		/*if(empty($_REQUEST['username']) || empty($_REQUEST['password']) || empty($_REQUEST['email'])) {
 			$respose = array('success' => false, 'response' => 'invalid data');
 			return $response;
 		}*/
+		if(!$nameCheck['success']) {
+			$detailed_error['username'] = $nameCheck['response'];
+			$response['success'] = false;
+		}
 
-		if($_REQUEST['password'] != $_REQUEST['repeated_password'])
-			$respose = array('success' => false, 'response' => 'passwords don\'t match');
-		else {
+		if(!$mailCheck['success']) {
+			$detailed_error['email'] = $mailCheck['response'];
+			$response['success'] = false;
+		}
+		if(strlen($password) < 4 || strlen($password) > 20) {
+			$detailed_error['password'] = 'password length should be between 4-20';
+			$response['success'] = false;
+		}
+
+		if($password != $repeated_password) {
+			$detailed_error['repeated_password'] = 'Passwords don\'t match';
+			$response['success'] = false;
+		}
+
+		$response['errors'] = $detailed_error;
+
+		if($response['success']) {
 			$userInfo = array('username'=>$_REQUEST['username'],
 						'password'=>$_REQUEST['password'],
 						'email'=>$_REQUEST['email'],
@@ -75,7 +99,13 @@ class UserController {
 
 	public function checkUserName() {
 		$response = array('success' => false, 'response' => 'invalid username');
+		
 		if(isset($_REQUEST['username']) && !empty($_REQUEST['username'])) {
+			$name = test_input($_REQUEST["username"]);
+		    if (!preg_match("/^[a-zA-Z0-9]*$/",$name)) {
+		    	return $response;
+		    }
+
 			$model = new UserModel();
 			$response = $model->checkUserName($_REQUEST['username']);
 		}
@@ -85,9 +115,15 @@ class UserController {
 
 	public function checkEMail() {
 		$response = array('success' => false, 'response' => 'invalid email');
+		
 		if(isset($_REQUEST['email'])  && !empty($_REQUEST['email'])) {
+			$email = test_input($_REQUEST["email"]);
+			if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+			  return $response;
+			}
+
 			$model = new UserModel();
-			$response = $model->checkUserName($_REQUEST['email']);
+			$response = $model->checkEMail($_REQUEST['email']);
 		}
 
 		return $response;

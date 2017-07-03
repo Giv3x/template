@@ -1,5 +1,5 @@
 <?php
-error_reporting(E_WARNING | E_NOTICE);
+error_reporting(0);
 session_start();
 include_once('php/database/mysql.php');
 include_once('php/database/connect.php');
