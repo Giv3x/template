@@ -1,6 +1,6 @@
 <?php
 session_start();
-include('database/mysql.php');
+include('php/database/mysql.php');
 
 if(!isset($_REQUEST['a'])) {
 	json_encode(array('success' => false, 'error' => 'fatal error! code: 0'));
@@ -10,11 +10,11 @@ if(!isset($_REQUEST['a'])) {
 $a = explode('.', $_REQUEST['a']);
 $class; $method; $file = $a[0];
 if(isset($a[1])) {
-	$class = $a[1].'Controler';
+	$class = $a[1].'Controller';
 	$method = $a[2];
 }
 
-include('controlers/'.$file.'.php');
+include('php/controllers/'.$file.'.php');
 if(isset($class)) {
 	$class = new $class();
 	$response = $class->$method();

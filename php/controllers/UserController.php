@@ -2,7 +2,7 @@
 //session_start();
 include('php/models/UserModel.php');
 
-class UserControler {
+class UserController {
 
 	function __construct() {
 	}

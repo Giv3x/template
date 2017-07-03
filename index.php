@@ -2,13 +2,13 @@
 session_start();
 include('php/database/mysql.php');
 include('php/database/connect.php');
-require_once('php/controlers/UserControler.php');
+require_once('php/controllers/UserController.php');
 include_once('php/session.php');
 
 $array['7ae01c752491d404476865e4e8f0a369'] = 'a';
 //unset($_COOKIE['f91c0a0e197da5f89a3fe820c0bf01edcc1990696c42a3e66878f0b37ad0f11d']);
 //echo $array['7ae01c752491d404476865e4e8f0a369']; die;
-$userControler = new userControler();
+$userControler = new userController();
 
 
 if(isset($_REQUEST['register'])) {
