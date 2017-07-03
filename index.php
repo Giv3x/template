@@ -1,7 +1,8 @@
 <?php
+error_reporting(E_WARNING | E_NOTICE);
 session_start();
 include('php/database/mysql.php');
-include('php/database/connect.php');
+include_once('php/database/connect.php');
 require_once('php/controllers/UserController.php');
 include_once('php/session.php');
 

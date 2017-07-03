@@ -1,6 +1,8 @@
 <?php
+error_reporting(E_WARNING | E_NOTICE);
 session_start();
-include('php/database/mysql.php');
+include_once('php/database/mysql.php');
+include_once('php/database/connect.php');
 
 if(!isset($_REQUEST['a'])) {
 	json_encode(array('success' => false, 'error' => 'fatal error! code: 0'));

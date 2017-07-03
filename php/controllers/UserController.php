@@ -31,6 +31,11 @@ class UserController {
 		$response = array();
 		$model = new UserModel();
 
+		/*if(empty($_REQUEST['username']) || empty($_REQUEST['password']) || empty($_REQUEST['email'])) {
+			$respose = array('success' => false, 'response' => 'invalid data');
+			return $response;
+		}*/
+
 		if($_REQUEST['password'] != $_REQUEST['repeated_password'])
 			$respose = array('success' => false, 'response' => 'passwords don\'t match');
 		else {
@@ -66,6 +71,26 @@ class UserController {
 		$model = new UserModel();
 
 		$model->logSession($username);
+	}
+
+	public function checkUserName() {
+		$response = array('success' => false, 'response' => 'invalid username');
+		if(isset($_REQUEST['username']) && !empty($_REQUEST['username'])) {
+			$model = new UserModel();
+			$response = $model->checkUserName($_REQUEST['username']);
+		}
+
+		return $response;
+	}
+
+	public function checkEMail() {
+		$response = array('success' => false, 'response' => 'invalid email');
+		if(isset($_REQUEST['email'])  && !empty($_REQUEST['email'])) {
+			$model = new UserModel();
+			$response = $model->checkUserName($_REQUEST['email']);
+		}
+
+		return $response;
 	}
 }
 

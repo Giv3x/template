@@ -75,6 +75,26 @@ class UserModel {
 				and session_id = '". $sid ."'";
 		$db->execQuery($query, -1);
 	}
+
+	function checkUserName($username) {
+		$db = ($this->sql);
+		$query = "select exists(select 1 from users where username = '".$username."') as check_name";
+		$data = $db->execQuery($query, PDO::FETCH_ASSOC);
+		$response['success'] = $data[0]['check_name'];
+		$response['response'] =  $response['success'] == 1 ? 'invalid username' : 'available';
+
+		return $response;
+	}
+
+	function checkEMail($email) {
+		$db = ($this->sql);
+		$query = "select exists(select 1 from users where email = '".$email."') as check_mail";
+		$data = $db->execQuery($query, PDO::FETCH_ASSOC);
+		$response['success'] = $data[0]['check_mail'];
+		$response['response'] =  $response['success'] == 1 ? 'invalid email' : 'available';
+
+		return $response;
+	}
 }
 
 ?>
