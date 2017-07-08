@@ -13,11 +13,11 @@
 // })
 
 jQuery.validator.setDefaults({
-  debug: true,
-  success: "valid",
-  submitHandler: function(form) {
-       $(form).ajaxSubmit({url: "index.php", type: "post"});
-     },
+  // debug: true,
+  // success: "valid",
+  // submitHandler: function(form) {
+  //      $(form).ajaxSubmit({url: "index.php", type: "post"});
+  //    },
 });
 $( "#vform" ).validate({
   rules: {
