@@ -32,11 +32,11 @@
 $( "#butt" ).click(function() {
 
   jQuery.ajax({
-      url: '/some/endpoint.php',
+      url: 'index.php',
       method: 'GET',
-      data: $('#the-form').serialize()
+      data: $('#vform').serialize()
   }).done(function (response) {
-     alert("asld;fkjalsdh") 
+     alert("asld;fkjalsdh")
   }).fail(function () {
       alert("error")
   });
