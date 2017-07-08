@@ -37,31 +37,31 @@
 
 <div id="id02" class="modal">
 
-  <form id="vform" class="modal-content animate">
+  <form id="vform" class="modal-content animate" action="">
 
 
-    <div class="container">
+    <div id="submitted" class="container">
       <label class="labels" for="username"><b>Username</b></label>
       <input id="username" type="text" placeholder="Enter Username" name="username">
 
       <label class="labels"><b>Email</b></label>
-      <input type="text" placeholder="Enter Email" name="email">
+      <input id="email" type="text" placeholder="Enter Email" name="email" value="asdf@asdf.ge">
 
       <label class="labels"><b>Password</b></label>
-      <input id="password" type="password" placeholder="Enter Password" name="password">
+      <input id="password" type="password" placeholder="Enter Password" name="password" value="1234">
 
       <label class="labels"><b>Repeat Password</b></label>
-      <input type="password" placeholder="Repeat Password" name="repeated_password">
+      <input id="repeated_password" type="password" placeholder="Repeat Password" name="repeated_password"  value="1234">
 
       <label class="labels"><b>City</b></label>
-      <input type="text" placeholder="Enter City" name="cityid">
+      <input id="cityid" type="text" placeholder="Enter City" name="cityid" value="1">
 
-      <button id="butt" type="submit" name="register">Register</button>
+      <button type="submit" name="register" class="button">Register</button>
+
     </div>
 
     <div class="container" style="background-color:#f1f1f1">
       <button type="button" onclick="document.getElementById('id02').style.display='none'" class="cancelbtn">Cancel</button>
-
     </div>
   </form>
 </div>
