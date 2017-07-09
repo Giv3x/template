@@ -42,19 +42,24 @@
 
     <div id="submitted" class="container">
       <label class="labels" for="username"><b>Username</b></label>
-      <input id="username" type="text" placeholder="Enter Username" name="username">
+      <input id="username" type="text" minlength="2" placeholder="Enter Username" name="username" required>
+      <label class="error" for="username" id="username_error">This field is required.</label>
 
       <label class="labels"><b>Email</b></label>
-      <input id="email" type="text" placeholder="Enter Email" name="email" value="asdf@asdf.ge">
+      <input id="email" type="text" placeholder="Enter Email" name="email" value="asdf@asdf.ge" required>
+      <label class="error" for="email" id="email_error">This field is required.</label>
 
       <label class="labels"><b>Password</b></label>
-      <input id="password" type="password" placeholder="Enter Password" name="password" value="1234">
+      <input id="password" type="password" placeholder="Enter Password" name="password" value="1234" required>
+      <label class="error" for="password" id="password_error">This field is required.</label>
 
       <label class="labels"><b>Repeat Password</b></label>
-      <input id="repeated_password" type="password" placeholder="Repeat Password" name="repeated_password"  value="1234">
+      <input id="repeated_password" type="password" placeholder="Repeat Password" name="repeated_password"  value="1234" required>
+      <label class="error" for="repeated_password" id="repeated_password_error">This field is required.</label>
 
       <label class="labels"><b>City</b></label>
-      <input id="cityid" type="text" placeholder="Enter City" name="cityid" value="1">
+      <input id="cityid" type="text" placeholder="Enter City" name="cityid" value="1" required>
+      <label class="error" for="cityid" id="cityid_error">This field is required.</label>
 
       <button type="submit" name="register" class="button">Register</button>
 
@@ -67,8 +72,8 @@
 </div>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
-<script src="views/js/validation.js"></script>
+<!-- <script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script> -->
+<!-- <script src="views/js/validation.js"></script> -->
 <script src="views/js/js.js"></script>
 <script src="views/js/ajax.js"></script>
 
