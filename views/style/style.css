@@ -7,6 +7,8 @@ input[type=text], input[type=password], input[type=email] {
     box-sizing: border-box;
 }
 
+body {margin: 0;}
+
 button {
     background-color: #4CAF50;
     color: white;
@@ -105,8 +107,42 @@ span.psw {
 .labels {
   float: left;
 }
-/*.label {
-  position: absolute;
-  background-color: white;
-  margin-left: 5px;
-}*/
+
+/*----------------------------navbar*/
+
+
+
+ul.topnav {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #333;
+}
+
+ul.topnav li a.active {
+    background-color: green;
+}
+
+ul.topnav li:first-child,
+ul.topnav li:nth-child(2)  {float: right;}
+
+ul.topnav li {float: left;}
+
+ul.topnav li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+ul.topnav li a:hover:not(.active) {background-color: #111;}
+
+ul.topnav li a.active {background-color: #4CAF50;}
+
+@media screen and (max-width: 600px){
+    ul.topnav li:first-child,
+    ul.topnav li:nth-child(2),
+    ul.topnav li {float: none;}
+}

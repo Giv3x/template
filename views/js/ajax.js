@@ -2,9 +2,34 @@
 
     $(function() {
 
+      //-------navbar
+
+      // var xhttp = new XMLHttpRequest();
+      // xhttp.onreadystatechange = function() {
+      //   if (this.readyState == 4 && this.status == 200) {
+      //     response = this.responseText;
+      // };
+      // xhttp.open("GET", "gimmeJson.php", true);
+      // xhttp.send();
+      //
+
+
+      $.getJSON("views/js/statham.json", function(result){
+      $.each(result, function(i, field){
+          $("#navbar").append("<li><a href='#" + field + "'>" + field + "</a></li>");
+          });
+        });
+
+        // $('.traki').click(function(e) {
+        //         e.preventDefault();
+        //         $('.traki').removeClass('active');
+        //         $(this).addClass('active');
+        //     });
+
+
+      //-------auth
         $('.error').hide();
         $(".button").click(function() {
-          // validate and process form here
 
           $('.error').hide();
       	  var username = $("input#username").val();
@@ -60,7 +85,7 @@
               }else{
 
                 $('#submitted').append("<h2>error response:</h2>" + JSON.stringify(answer.errors))
-                
+
               }
 
             },
