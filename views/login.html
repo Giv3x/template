@@ -47,13 +47,24 @@
 
 
     <div id="submitted" class="container">
-      <label class="labels" for="username"><b>Username</b></label>
-      <input id="username" type="text" minlength="2" placeholder="Enter Username" name="username" required>
-      <label class="error" for="username" id="username_error">This field is required.</label>
 
-      <label class="labels"><b>Email</b></label>
-      <input id="email" type="text" placeholder="Enter Email" name="email" value="asdf@asdf.ge" required>
-      <label class="error" for="email" id="email_error">This field is required.</label>
+      <div id="usercheck">
+        <label class="labels" for="username"><b>Username</b></label>
+        <input id="username" type="text" minlength="2" placeholder="Enter Username" name="username" required>
+        <img src="views/assets/ajax-loader.gif" id="loadergif">
+        <img src="views/assets/loadertick.ico" id="loadertick">
+        <img src="views/assets/loaderX.png" id="loaderX">
+        <label class="error" for="username" id="username_error">This field is required.</label>
+      </div>
+
+      <div id="emailcheck">
+        <label class="labels"><b>Email</b></label>
+        <input id="email" type="text" placeholder="Enter Email" name="email" value="asdf@asdf.ge" required>
+        <img src="views/assets/ajax-loader.gif" id="loadergifE">
+        <img src="views/assets/loadertick.ico" id="loadertickE">
+        <img src="views/assets/loaderX.png" id="loaderXE">
+        <label class="error" for="email" id="email_error">This field is required.</label>
+      </div>
 
       <label class="labels"><b>Password</b></label>
       <input id="password" type="password" placeholder="Enter Password" name="password" value="1234" required>
@@ -68,7 +79,7 @@
       <label class="error" for="cityid" id="cityid_error">This field is required.</label>
 
       <button type="submit" name="register" class="button">Register</button>
-
+      <div id="errorplace"></div>
     </div>
 
     <div class="container" style="background-color:#f1f1f1">

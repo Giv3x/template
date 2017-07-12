@@ -1,7 +1,12 @@
 
 
     $(function() {
-
+      $("#loadergif").hide();
+      $("#loadertick").hide();
+      $("#loaderX").hide();
+      $("#loadergifE").hide();
+      $("#loadertickE").hide();
+      $("#loaderXE").hide();
       //-------navbar
 
       // var xhttp = new XMLHttpRequest();
@@ -28,6 +33,84 @@
 
 
       //-------auth
+
+      $("#username").blur(function() {
+        // $("#loadericon").show();
+        $.ajax ({
+          url: 'loader.php?a=UserController.User.checkUsername',
+          type: "post",
+          data: $('#username').serialize(),
+          datatype: "JSON",
+          beforeSend: function(){
+
+            $("#loadergif").show();
+
+          },
+          success: function(response){
+
+
+            var answer = $.parseJSON(response);
+            // $("#errorplace").html(answer.response);
+            if(answer.success == true){
+              $("#loadergif").hide();
+              $("#loaderX").hide();
+              $("#loadertick").show();
+            }else{
+              $("#loadergif").hide();
+              $("#loadertick").hide();
+              $("#loaderX").show();
+            }
+
+          },
+          error: function(error){
+
+            var answer = $.parseJSON(error);
+
+            $("#errorplace").html(answer.response);
+          }
+        })
+      });
+
+
+
+            $("#email").blur(function() {
+              // $("#loadericon").show();
+              $.ajax ({
+                url: 'loader.php?a=UserController.User.checkEMail',
+                type: "post",
+                data: $('#email').serialize(),
+                datatype: "JSON",
+                beforeSend: function(){
+
+                  $("#loadergifE").show();
+
+                },
+                success: function(response){
+
+
+                  var answer = $.parseJSON(response);
+                  // $("#errorplace").html(answer.response);
+                  if(answer.success == true){
+                    $("#loadergifE").hide();
+                    $("#loaderXE").hide();
+                    $("#loadertickE").show();
+                  }else{
+                    $("#loadergifE").hide();
+                    $("#loadertickE").hide();
+                    $("#loaderXE").show();
+                  }
+
+                },
+                error: function(error){
+
+                  var answer = $.parseJSON(error);
+
+                  $("#errorplace").html(answer.response);
+                }
+              })
+            });
+
+
         $('.error').hide();
         $(".button").click(function() {
 
@@ -63,6 +146,8 @@
             return false;
           }
 
+
+
           $.ajax({
             url: 'loader.php?a=UserController.User.register',
             type: "post",
@@ -84,8 +169,14 @@
 
               }else{
 
-                $('#submitted').append("<h2>error response:</h2>" + JSON.stringify(answer.errors))
+                $('#errorplace').html("<h2>error response:</h2>");
 
+                for(var error in answer.errors){
+
+                  if(answer.errors[error] !== '0'){
+                    $('#errorplace').append("<p>" + answer.errors[error] + "</p>")
+                  }
+                }
               }
 
             },
