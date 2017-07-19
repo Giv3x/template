@@ -66,7 +66,9 @@ class sql {
 
 	function bindValues($statement, $params, $values) {
 		// You might need to add this function with [] => [name], [size], [type] - like params structure in the future, but... not now ya know (the same goes for array2params)
+
 		foreach($params as $param) {
+			//echo $param.'<br>';
 			$statement->bindValue(':'.$param, $values[$param]);
 		}
 	}
@@ -102,6 +104,7 @@ class sql {
 		$query .= $wParams[sizeof($wParams) - 1]." = :".$wParams[sizeof($wParams) - 1];
 
 		$statement = $db->prepare($query);
+		//echo '<pre>'; echo $query; die;
 
 		foreach($uValues as $v)
 			$this->bindValues($statement, $uParams, $v);
