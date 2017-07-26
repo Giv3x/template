@@ -15,7 +15,8 @@ class MenuController {
 	}
 
 	function changeItemVisibility() {
-		$active = isset($_REQUEST['visibility']) ? 1 : 0;
+		$active = isset($_REQUEST['visibility']) ? $_REQUEST['visibility'] : 0;
+		
 		if(!isset($_REQUEST['item'])) {
 			$response = array('success' => false, 'error' => 'item not set');
 			return $response;
