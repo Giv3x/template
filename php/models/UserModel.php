@@ -16,6 +16,7 @@ class UserModel {
 		$query = "select salt from users where username = :uname";
 		$params = array(0 => array('name' => ':uname', 'value' => $username, 'type' => PDO::PARAM_STR|PDO::PARAM_INPUT_OUTPUT, 'size' => 45));
 		$salt = $db->execStatement($query, $params);
+                
 		$salt = $salt[0]['salt'];
 		$password = hash("sha256", $password.$salt);
 
@@ -24,11 +25,12 @@ class UserModel {
 		$params = array(0 => array('name' => ':uname', 'value' => $username, 'type' => PDO::PARAM_STR|PDO::PARAM_INPUT_OUTPUT, 'size' => 45),
 			1 => array('name' => ':pwd', 'value' => $password, 'type' => PDO::PARAM_STR|PDO::PARAM_INPUT_OUTPUT, 'size' => 45));
 		$row = $db->execCursor($query, $params);
-
+                //print_r($row); die;
+                //echo $password; die;
 		if(isset($row['cursor']['id']))
 			$response = array('success' => true, 'response' => $row['cursor']);
 		else $response = array('success' => false, 'response' => 'wrong id/password');
-
+                
 		return $response;
 	}
 

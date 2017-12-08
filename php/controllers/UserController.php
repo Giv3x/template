@@ -16,6 +16,7 @@ class UserController {
 			$userModel = new UserModel();
 			$response = $userModel->getLoginInfo($_REQUEST['username'], $_REQUEST['password']);
 			if($response['success']) {
+                            //print_r($response); die;
 				$_SESSION['id11'] = $response['response']['username'];
 				$_SESSION['role'] = $response['response']['role'];
 
@@ -71,7 +72,6 @@ class UserController {
 			$userInfo['password'] = hash("sha256", $userInfo['password'].$userInfo['salt']);
 			$response = $model->register($userInfo);
 		}
-
 		return $response;
 	}
 
